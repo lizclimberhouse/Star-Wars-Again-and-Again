@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import header from '../images/header.jpg';
 
 class NavBar extends Component {
   rightNavs = () => {
@@ -12,15 +13,33 @@ class NavBar extends Component {
 
   render() {
     return (
-      <div>
+      // <div >
         <Menu pointing secondary>
           <Link to='/'>
             <Menu.Item name='home' />
           </Link>
+          <Link to='/people'>
+            <Menu.Item name='people' />
+          </Link>
+          <Link to='/nothing'>
+            <Menu.Item name='no match' />
+          </Link>
           { this.rightNavs() }
         </Menu>
-      </div>
+      // </div>
     );
+  }
+}
+
+const styles = {
+  header: {
+    backgroundColor: 'black',
+    backgroundImage: `url(${header})`,
+    backgroundRepeat: 'no-repeat',
+  },
+  text: {
+    color: 'white',
+
   }
 }
 
