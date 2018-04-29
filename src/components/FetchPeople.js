@@ -7,7 +7,7 @@ import Person from './Person';
 import axios from 'axios';
 
 class FetchPeople extends React.Component {
-  state = { people: {}, person: [] }
+  state = { people: {}, person: {} }
   // componentDidMount() {
   //   const { dispatch } = this.props;
   //   dispatch(getPeople())
@@ -24,11 +24,26 @@ class FetchPeople extends React.Component {
       })
   }
 
+  callPerson = (id) => {
+    axios.get(`https://swapi.co/api/people/${id}`)
+      .then( res => {
+        this.setState({ person: res.data })
+        console.log(this.state.person)
+        return(
+        <Person person={this.state.person} />
+        )
+      })
+      .catch(err => {
+        console.log(err.response)
+      })
+  }
+
   render() {
     return (
       <div>
         { this.props.match.params.id ?
-        <Person people={this.state.people} />
+        // this.callPerson(this.props.match.params.id)
+        this.callPerson(this.props.match.params.id)
         :
         <People people={this.state.people} />
         }
