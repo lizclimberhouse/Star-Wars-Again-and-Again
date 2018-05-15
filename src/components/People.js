@@ -4,21 +4,21 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 class People extends React.Component {
-  // state = { people: {} }
+  state = { people: {} }
 
-  // componentDidMount() {
-  //   axios.get('https://swapi.co/api/people/')
-  //     .then( res => {
-  //       this.setState({ people: res.data.results })
-  //       // console.log(this.state.people)
-  //     })
-  //     .catch(err => {
-  //       // console.log(err.response)
-  //     })
-  // }
+  componentDidMount() {
+    axios.get('https://swapi.co/api/people/')
+      .then( res => {
+        this.setState({ people: res.data.results })
+        // console.log(this.state.people)
+      })
+      .catch(err => {
+        // console.log(err.response)
+      })
+  }
 
   render() {
-    const { people } = this.props;
+    const { people } = this.state;
     // { people[0] ? console.log(people[0].name) : null }
     return (
       <Container>
@@ -26,7 +26,7 @@ class People extends React.Component {
         { people[0] ?
         people.map((person, i) => {
           return(
-          <Link key={i} to={`/people/${(i+1)}`}>{person.name}</Link>
+          <Link key={i} to={`/person/${(i+1)}`}>{person.name}</Link>
           )
         })
         :
