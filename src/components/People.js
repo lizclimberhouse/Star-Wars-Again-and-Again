@@ -26,7 +26,7 @@ class People extends React.Component {
         { people[0] ?
         people.map((person, i) => {
           return(
-          <Link key={i} to={`/person/${(i+1)}`}>{person.name}</Link>
+          <Link key={i} to={`/person/${(i+1)}`}>{person.name}<br /></Link>
           )
         })
         :

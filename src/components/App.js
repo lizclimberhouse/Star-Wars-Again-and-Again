@@ -8,7 +8,8 @@ import { Segment } from 'semantic-ui-react';
 // import FetchPeople from './FetchPeople';
 import People from './People';
 import Person from './Person';
-
+import Films from './Films';
+import Film from './Film';
 
 class App extends Component {
   render() {
@@ -20,6 +21,8 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/person/:id' component={Person} />
             <Route exact path='/people' component={People} />
+            <Route exact path='/films' component={Films} />
+            <Route exact path='/film/:id' component={Film} />
             <Route component={NoMatch} />
           </Switch>
       </Segment>
