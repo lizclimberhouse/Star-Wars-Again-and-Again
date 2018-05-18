@@ -4,13 +4,12 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 class Films extends React.Component {
-  state = { films: {} }
+  state = { films: [] }
 
   componentDidMount() {
     axios.get('https://swapi.co/api/films/')
       .then( res => {
         this.setState({ films: res.data.results })
-        // console.log(this.state.people)
       })
       .catch(err => {
         // console.log(err.response)
@@ -23,10 +22,9 @@ class Films extends React.Component {
       <Container>
         <Header as='h1' textAlign='center'>Films Component</Header>
         { films[0] ?
-        films.map((film, i) => {
-          // film.url .. need to split this and save only the second to last character as teh ID
+        films.map((film) => {
           return(
-          <Link key={(i+1)} to={`/film/${(i+1)}`}>{film.title}<br /></Link>
+          <Link key={film.title} to={`/film/${film.title}`}>{film.title}<br /></Link>
           )
         })
         :

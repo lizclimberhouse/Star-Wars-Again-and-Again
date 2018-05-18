@@ -3,18 +3,18 @@ import { Header, Container } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-
 class Film extends Component {
 
   state = { film: {} }
 
   componentDidMount() {
-    const id = parseInt(this.props.match.params.id, 10 )
-    axios.get(`https://swapi.co/api/films/${id}`)
+    const id = (this.props.match.params.id)
+    axios.get(`https://swapi.co/api/films/?search=${id}`)
       .then( res => {
-        this.setState({ film: res.data })
+        this.setState({ film: res.data.results[0] })
       })
       .catch(err => {
+        // console.log(err.response)
       })
   }
 
