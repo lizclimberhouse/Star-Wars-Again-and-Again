@@ -20,11 +20,28 @@ class Film extends Component {
 
   render() {
     const { film } = this.state;
+    const { characters } = this.state.film;
     return (
       <Container>
         <Header as='h1' textAlign='center'>Film Component</Header>
         { film.title ?
-        <p>{film.title}</p>
+        <div>
+          <p>Episode {film.episode_id}</p>
+          <p>{film.title}</p>
+          <p>{film.opening_crawl}</p>
+          <div>
+            { film.characters[0] ?
+              characters.map((character, i) => {
+                return(
+                // Need to find a way to grab the person # out of the url to use it below
+                <Link key={i} to={`/person/${(i+1)}`}>{character}<br /></Link>
+                )
+              })
+              :
+              null
+            }
+          </div>
+        </div>
         :
         null
         }
