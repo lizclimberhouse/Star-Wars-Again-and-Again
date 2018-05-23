@@ -10,6 +10,7 @@ import People from './People';
 import Person from './Person';
 import Films from './Films';
 import Film from './Film';
+import Planets from './Planets';
 
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
             <Route exact path='/people' component={People} />
             <Route exact path='/films' component={Films} />
             <Route exact path='/film/:id' component={Film} />
+            <Route exact path='/planets' component={Planets} />
             <Route component={NoMatch} />
           </Switch>
       </Segment>

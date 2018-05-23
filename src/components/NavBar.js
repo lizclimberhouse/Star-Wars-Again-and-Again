@@ -24,6 +24,9 @@ class NavBar extends Component {
           <Link to='/films'>
             <Menu.Item name='films' />
           </Link>
+          <Link to='/planets'>
+            <Menu.Item name='planets' />
+          </Link>
           <Link to='/nothing'>
             <Menu.Item name='no match' />
           </Link>
