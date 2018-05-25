@@ -1,10 +1,10 @@
 import React from 'react';
-import { Header, Container } from 'semantic-ui-react';
+import { Header, Container, Button, Icon, Divider } from 'semantic-ui-react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 class Planets extends React.Component {
-  state = { planets: [] }
+  state = { planets: [], showPlanet: false, planet: null }
 
   componentDidMount() {
     axios.get('https://swapi.co/api/planets/')
@@ -17,15 +17,30 @@ class Planets extends React.Component {
       })
   }
 
+  togglePlanet = () => {
+      const { dispatch } = this.props;
+      const { showPlanet } = this.state;
+      this.setState({ showPlanet: !showPlanet })
+  }
+
   render() {
-    const { planets } = this.state;
+    const { planets, showPlanet } = this.state;
     return (
       <Container>
         <Header as='h1' textAlign='center'>Planets Component</Header>
         { planets[0] ?
-        planets.map((planet) => {
+        planets.map((planet, i) => {
           return(
-          <Link key={planet.name} to={`/planet/${planet.name}`}>{planet.name}<br /></Link>
+            <Container>
+              <Button key={planet.name} onClick={() => this.togglePlanet()}><Icon name='plus'/>{planet.name}</Button>
+              <div>
+              { showPlanet ?
+                <p>{planet.terrain}<br /></p>
+              :
+                <Divider hidden />
+              }
+              </div>
+            </Container>
           )
         })
         :
